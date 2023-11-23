@@ -18,12 +18,20 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+      CONFIG:
+        description: '选择配置文件'
+        required: true
+        default: 'x86-64-mini'
+        type: choice
+        options:
+          - x86-64
+          - x86-64-mini
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: .config
+  CONFIG_FILE: ${{inputs.CONFIG=='x86-64' && 'x86-64.config' || 'x86-64-mini.config'}}
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
   UPLOAD_BIN_DIR: false
