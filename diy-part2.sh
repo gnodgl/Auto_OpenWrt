@@ -23,8 +23,8 @@ rm -rf package/lean/luci-theme-material
 rm -rf package/lean/luci-theme-netgear
 
 #移除不用软件包
-rm -rf feeds/luci/applications/luci-app-dockerman
 rm -rf feeds/luci/applications/luci-app-wrtbwmon
+rm -rf feeds/luci/applications/luci-app-unblockmusic
 rm -rf feeds/packages/net/smartdns
 
 # 添加adguardhome
@@ -36,9 +36,6 @@ pushd package/luci-app-openclash/tools/po2lmo
 make && sudo make install
 popd
 
-# 添加smartdns
-svn co https://github.com/kenzok8/openwrt-packages/trunk/smartdns package/smartdns
-svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-smartdns package/luci-app-smartdns
 #添加argon-config 使用 最新argon
 git clone https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 rm -rf feeds/luci/themes/luci-theme-argon
