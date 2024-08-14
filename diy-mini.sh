@@ -129,3 +129,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_U
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
+# 定制golang版本 1.22.6 Alist3.36.0 go >=1.22.4
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
