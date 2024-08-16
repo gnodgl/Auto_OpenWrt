@@ -1,4 +1,6 @@
 #!/bin/bash
+# root默认密码root
+sed -i 's|^root:[^:]*:|root:$1$zIMgxsz9$tIl71DXbq00Tkjwk0jGVf.:|' /etc/shadow
 # Set default theme to luci-theme-argon
 uci set luci.main.mediaurlbase='/luci-static/argon'
 # Set default lan ip to 10.10.10.1
