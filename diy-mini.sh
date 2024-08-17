@@ -64,11 +64,11 @@ git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-a
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
 
 # MosDNS
-git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
+git clone https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Alist
-git clone https://github.com/sbwml/luci-app-alist package/alist
+git clone https://github.com/sbwml/luci-app-alist -b lua package/alist
 
 # Themes
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
