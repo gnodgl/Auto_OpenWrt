@@ -68,7 +68,8 @@ git clone https://github.com/sbwml/luci-app-mosdns -b v5-lua package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 # Alist
-git clone https://github.com/sbwml/luci-app-alist -b lua package/alist
+merge_package master https://github.com/sbwml/luci-app-alist  package alist
+git clone https://github.com/sbwml/luci-app-alist -b lua package/luci-app-alist
 
 # Themes
 git clone --depth=1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
