@@ -8,19 +8,18 @@ on:
       CONFIG:
         description: '选择配置文件'
         required: true
-        default: 'x86_64-mini'
+        default: 'x86_64.config'
         type: choice
         options:
-          - x86_64
-          - x86_64-mini
+          - x86_64.config
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
   FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: ${{inputs.CONFIG=='x86_64' && 'x86_64.config' || 'x86_64-mini.config'}}
+  CONFIG_FILE: ${{inputs.CONFIG}}
   CLASH_KERNEL: amd64
-  DIY_SH: ${{inputs.CONFIG=='x86_64' && 'diy-script.sh' || 'diy-mini.sh'}}
+  DIY_SH: diy.sh
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: false
@@ -80,13 +79,12 @@ jobs:
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
+        mv $GITHUB_WORKSPACE/config/lede/$CONFIG_FILE openwrt/.config
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
-        chmod +x $DIY_SH
+        chmod +x $GITHUB_WORKSPACE/config/lede/$DIY_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_SH
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
-        $GITHUB_WORKSPACE/scripts/preset-terminal-tools.sh
 #        $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
 
     - name: Download package
@@ -103,7 +101,7 @@ jobs:
       run: |
         cd openwrt
         mkdir -p files/etc/uci-defaults
-        cp $GITHUB_WORKSPACE/scripts/init-settings.sh files/etc/uci-defaults/99-init-settings
+        cp $GITHUB_WORKSPACE/config/lede/99-init-settings files/etc/uci-defaults/99-init-settings
         echo -e "$(nproc) thread compile"
         make -j$(nproc) || make -j1 || make -j1 V=s
         echo "status=success" >> "$GITHUB_OUTPUT"
@@ -135,7 +133,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt-firmware-${{inputs.CONFIG}}${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: LEDE-firmware-${{inputs.CONFIG}}${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Generate release tag
@@ -144,8 +142,6 @@ jobs:
       run: |
         echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
         touch release.txt
-        [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
-        [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
         echo "status=success" >> "$GITHUB_OUTPUT"
 
     - name: Upload firmware to release
