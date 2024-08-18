@@ -3,9 +3,6 @@
 # 默认ip为10.10.10.1
 sed -i 's/192.168.1.1/10.10.10.1/g' package/base-files/files/bin/config_generate
 
-# 修改主机名
-sed -i 's/ImmortalWrt/OpenWrt/g' package/base-files/files/bin/config_generate
-
 # 修改默认主题为Argon
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
@@ -18,7 +15,6 @@ sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.
 
 # 修改系统信息
 cp -f $GITHUB_WORKSPACE/banner package/base-files/files/etc/banner
-cp -f $GITHUB_WORKSPACE/config/immortalwrt/99-default-settings package/emortal/default-settings/files/99-default-settings
 
 # 移除要替换的包
 rm -rf feeds/packages/net/mosdns
@@ -89,6 +85,9 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
+# nlbwmon调整菜单位置到网络
+sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
+sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
