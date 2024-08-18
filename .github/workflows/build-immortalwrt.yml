@@ -81,7 +81,7 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $GITHUB_WORKSPACE/config/immortalwrt/$CONFIG_FILE openwrt/.config
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
-        chmod +x $DIY_SH
+        chmod +x $GITHUB_WORKSPACE/config/immortalwrt/$DIY_SH
         cd openwrt
         $GITHUB_WORKSPACE/config/immortalwrt/$DIY_SH
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
