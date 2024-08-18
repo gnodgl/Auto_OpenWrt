@@ -79,7 +79,7 @@ jobs:
     - name: Load custom configuration
       run: |
         [ -e files ] && mv files openwrt/files
-        [ -e $CONFIG_FILE ] && mv $GITHUB_WORKSPACE/config/immortalwrt/$CONFIG_FILE openwrt/.config
+        mv $GITHUB_WORKSPACE/config/immortalwrt/$CONFIG_FILE openwrt/.config
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         chmod +x $GITHUB_WORKSPACE/config/immortalwrt/$DIY_SH
         cd openwrt
