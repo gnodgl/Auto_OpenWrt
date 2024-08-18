@@ -83,7 +83,7 @@ jobs:
         chmod +x $GITHUB_WORKSPACE/scripts/*.sh
         chmod +x $GITHUB_WORKSPACE/config/lede/$DIY_SH
         cd openwrt
-        $GITHUB_WORKSPACE/$DIY_SH
+        $GITHUB_WORKSPACE/config/lede/$DIY_SH
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
 #        $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
 
