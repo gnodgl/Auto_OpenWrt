@@ -23,8 +23,10 @@ cp -f $GITHUB_WORKSPACE/config/immortalwrt/99-default-settings package/emortal/d
 # 移除要替换的包
 rm -rf feeds/packages/net/mosdns
 rm -rf feeds/packages/net/smartdns
-rm -rf feeds/luci/applications/luci-app-mosdns
+rm -rf feeds/packages/net/alist
 rm -rf feeds/packages/net/v2ray-geodata
+rm -rf feeds/luci/applications/luci-app-mosdns
+rm -rf feeds/luci/applications/luci-app-alist
 
 # 定制golang版本 1.23.0 Alist3.36.0 go >=1.22.4
 rm -rf feeds/packages/lang/golang
@@ -56,7 +58,7 @@ function merge_package() {
 }
 
 # Adguardhome
-#git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 
 # 科学上网插件
 # git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
@@ -81,7 +83,7 @@ git clone --depth=1 https://github.com/pymumu/luci-app-smartdns package/luci-app
 git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
 
 # 在线用户
-merge_package main https://github.com/haiibo/packages package luci-app-onliner
+git clone --depth=1 https://github.com/gnodgl/luci-app-onliner package/luci-app-onliner
 
 # 修改 Makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
@@ -89,6 +91,12 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
+# nlbwmon带宽监控调整菜单位置到网络
+sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
+sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
+
+# Frpc菜单修改
+sed -i 's,frp 客户端,Frp 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
