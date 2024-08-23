@@ -100,6 +100,7 @@ sed -i 's/nas/services/g' feeds/luci/applications/luci-app-samba4/root/usr/share
 ### 主题定制 ###
 # Argon主题定制
 sed -i 's/bing/none/g' package/luci-app-argon-config/root/etc/config/argon
+sed -i 's,Argon 主题设置,Argon 设置,g' package/luci-app-argon-config/po/zh_Hans/argon-config.po
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/images/favicon.ico package/luci-theme-argon/htdocs/luci-static/argon/favicon.ico
 

@@ -25,10 +25,6 @@ uci commit network
 uci set luci.main.mediaurlbase='/luci-static/argon'
 uci commit luci
 
-#nlbwmon
-uci set nlbwmon.@nlbwmon[0].refresh_interval=2s
-uci commit nlbwmon
-
 rm -f /usr/lib/lua/luci/view/admin_status/index/mwan.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/upnp.htm
 rm -f /usr/lib/lua/luci/view/admin_status/index/linkease.htm
