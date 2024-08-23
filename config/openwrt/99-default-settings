@@ -16,7 +16,7 @@ uci set fstab.@global[0].anon_mount=1
 uci commit fstab
 # 主题 与中文
 uci set luci.main.lang=zh_cn
-uci set luci.main.mediaurlbase='/luci-static/argon'
+#uci set luci.main.mediaurlbase='/luci-static/argon'
 uci commit luci
 
 # Set default lan to eth1
