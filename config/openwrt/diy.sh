@@ -97,6 +97,13 @@ sed -i 's,frp 客户端,Frp 客户端,g' feeds/luci/applications/luci-app-frpc/p
 # Samba4菜单调整至服务
 sed -i 's/nas/services/g' feeds/luci/applications/luci-app-samba4/root/usr/share/luci/menu.d/luci-app-samba4.json
 
+# ttyd菜单调整至系统
+sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
+
+# statistics菜单调整到系统下
+sed -i 's/\/statistics/\/system&/' feeds/luci/applications/luci-app-statistics/root/usr/share/luci/menu.d/luci-app-statistics.json
+
+
 ### 主题定制 ###
 # Argon主题定制
 sed -i 's/bing/none/g' package/luci-app-argon-config/root/etc/config/argon

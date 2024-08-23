@@ -24,6 +24,7 @@ function merge_package() {
     cd "$rootdir"
 }
 
+
 ### 系统信息定制 ###
 # 默认ip为10.10.10.1
 sed -i 's/192.168.1.1/10.10.10.1/g' package/base-files/files/bin/config_generate
@@ -42,6 +43,7 @@ cp -f $GITHUB_WORKSPACE/config/immortalwrt/99-default-settings package/emortal/d
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
+
 ### 第三方应用安装 ###
 # Alist
 #rm -rf feeds/packages/net/alist
@@ -51,17 +53,12 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 # 科学上网插件
 # git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
 # svn export https://github.com/haiibo/packages/trunk/luci-app-vssr package/luci-app-vssr
-# git clone --depth=1 https://github.com/jerrykuku/lua-maxminddb package/lua-maxminddb
 # git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/luci-app-passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
 
 # adguardhome
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
-
-# netdata
-#rm -rf feeds/luci/applications/luci-app-netdata
-#git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 
 # OpenClash
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
@@ -87,6 +84,7 @@ git clone --depth=1 https://github.com/jerrykuku/luci-app-argon-config package/l
 # 在线用户
 git clone --depth=1 https://github.com/gnodgl/luci-app-onliner package/luci-app-onliner
 
+
 ### 菜单调整 ###
 # nlbwmon带宽监控调整菜单位置到网络
 # sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
@@ -96,16 +94,19 @@ git clone --depth=1 https://github.com/gnodgl/luci-app-onliner package/luci-app-
 sed -i 's,frp 客户端,Frp 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
 
 # Netdata菜单调整
-sed -i 's/system/status/g' feeds/luci/applications/luci-app-netdata/luasrc/controller/netdata.lua
+#sed -i 's/system/status/g' feeds/luci/applications/luci-app-netdata/luasrc/controller/netdata.lua
 
 # Samba4菜单调整至服务
-#sed -i 's/nas/services/g' feeds/luci/applications/luci-app-samba4/root/usr/share/luci/menu.d/luci-app-samba4.json
+sed -i 's/nas/services/g' feeds/luci/applications/luci-app-samba4/root/usr/share/luci/menu.d/luci-app-samba4.json
+
+# statistics菜单调整到系统下
+sed -i 's/\/statistics/\/system&/' feeds/luci/applications/luci-app-statistics/root/usr/share/luci/menu.d/luci-app-statistics.json
+
 
 ### 主题定制 ###
 # Argon主题定制
 sed -i 's/bing/none/g' package/luci-app-argon-config/root/etc/config/argon
 sed -i 's,Argon 主题设置,Argon 设置,g' package/luci-app-argon-config/po/zh_Hans/argon-config.po
-sed -i 's,href="/",href="/cgi-bin/luci/",g' package/luci-app-argon/luasrc/view/themes/argon/sysauth.htm
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/images/favicon.ico package/luci-theme-argon/htdocs/luci-static/argon/favicon.ico
 
