@@ -22,6 +22,9 @@ uci set network.wan.device='eth0'
 uci set network.wan6.device='eth0'
 uci commit network
 
+uci set luci.main.mediaurlbase='/luci-static/argon'
+uci commit luci
+
 #nlbwmon
 uci set nlbwmon.@nlbwmon[0].refresh_interval=2s
 uci commit nlbwmon

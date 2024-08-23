@@ -1,8 +1,5 @@
 #!/bin/sh
 
-uci set luci.main.lang=zh_cn
-uci commit luci
-
 uci -q batch <<-EOF
 	set system.@system[0].timezone='CST-8'
 	set system.@system[0].zonename='Asia/Shanghai'
@@ -17,6 +14,10 @@ uci commit system
 
 uci set fstab.@global[0].anon_mount=1
 uci commit fstab
+# 主题 与中文
+uci set luci.main.lang=zh_cn
+uci set luci.main.mediaurlbase='/luci-static/argon'
+uci commit luci
 
 # Set default lan to eth1
 uci set network.lan.device='eth1'
