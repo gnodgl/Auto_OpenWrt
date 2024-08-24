@@ -101,7 +101,7 @@ sed -i 's/nas/services/g' feeds/luci/applications/luci-app-samba4/root/usr/share
 sed -i 's/services/system/g' feeds/luci/applications/luci-app-ttyd/root/usr/share/luci/menu.d/luci-app-ttyd.json
 
 # statistics菜单调整到系统下
-sed -i 's/\/statistics/\/system&/' feeds/luci/applications/luci-app-statistics/root/usr/share/luci/menu.d/luci-app-statistics.json
+#sed -i 's/\/statistics/\/system&/' feeds/luci/applications/luci-app-statistics/root/usr/share/luci/menu.d/luci-app-statistics.json
 
 
 ### 主题定制 ###
