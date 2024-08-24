@@ -57,12 +57,12 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 
 # adguardhome
 git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
-ln -s package/luci-app-adguardhome/po/zh-cn package/luci-app-adguardhome/po/zh_Hans
+#ln -s package/luci-app-adguardhome/po/zh-cn package/luci-app-adguardhome/po/zh_Hans
 
 # netdata
 rm -rf feeds/luci/applications/luci-app-netdata
 git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
-ln -s package/luci-app-netdata/po/zh-cn package/luci-app-netdata/po/zh_Hans
+#ln -s package/luci-app-netdata/po/zh-cn package/luci-app-netdata/po/zh_Hans
 
 # OpenClash
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
@@ -112,6 +112,8 @@ sed -i 's/bing/none/g' package/luci-app-argon-config/root/etc/config/argon
 sed -i 's,Argon 主题设置,Argon 设置,g' package/luci-app-argon-config/po/zh_Hans/argon-config.po
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/images/favicon.ico package/luci-theme-argon/htdocs/luci-static/argon/favicon.ico
+
+find -type d -name zh-cn -path '*/luci-app-*/po/zh-cn' | xargs -i rename -v 's/zh-cn/zh_Hans/' {}
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a

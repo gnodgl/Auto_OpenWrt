@@ -58,13 +58,13 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
 
 # adguardhome
-git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
-ln -s package/luci-app-adguardhome/po/zh-cn package/luci-app-adguardhome/po/zh_Hans
+#git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+#ln -s package/luci-app-adguardhome/po/zh-cn package/luci-app-adguardhome/po/zh_Hans
 
 # netdata
-rm -rf feeds/luci/applications/luci-app-netdata
-git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
-ln -s package/luci-app-netdata/po/zh-cn package/luci-app-netdata/po/zh_Hans
+#rm -rf feeds/luci/applications/luci-app-netdata
+#git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
+#ln -s package/luci-app-netdata/po/zh-cn package/luci-app-netdata/po/zh_Hans
 
 # OpenClash
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
@@ -93,8 +93,8 @@ git clone --depth=1 https://github.com/gnodgl/luci-app-onliner package/luci-app-
 
 ### 菜单调整 ###
 # nlbwmon带宽监控调整菜单位置到网络
-sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
-sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
+#sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
+#sed -i 's/services/network/g' feeds/luci/applications/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
 
 # Frpc菜单名修改
 sed -i 's,frp 客户端,Frp 客户端,g' feeds/luci/applications/luci-app-frpc/po/zh_Hans/frpc.po
@@ -103,7 +103,7 @@ sed -i 's,frp 客户端,Frp 客户端,g' feeds/luci/applications/luci-app-frpc/p
 sed -i 's/nas/services/g' feeds/luci/applications/luci-app-samba4/root/usr/share/luci/menu.d/luci-app-samba4.json
 
 # statistics菜单调整到系统下
-#sed -i 's/\/statistics/\/system&/;s/80/99/' feeds/luci/applications/luci-app-statistics/root/usr/share/luci/menu.d/luci-app-statistics.json
+sed -i 's/\/statistics/\/status&/;s/80/99/' feeds/luci/applications/luci-app-statistics/root/usr/share/luci/menu.d/luci-app-statistics.json
 
 
 ### 主题定制 ###
