@@ -86,7 +86,6 @@ jobs:
         $GITHUB_WORKSPACE/config/openwrt/$DIY_SH
         $GITHUB_WORKSPACE/scripts/preset-clash-core.sh $CLASH_KERNEL
         $GITHUB_WORKSPACE/scripts/preset-adguard-core.sh $CLASH_KERNEL
-        $GITHUB_WORKSPACE/scripts/convert_translation.sh
 
     - name: Download package
       id: package

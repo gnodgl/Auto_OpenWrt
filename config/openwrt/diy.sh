@@ -56,11 +56,11 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
 
 # adguardhome
-git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+merge_package main https://github.com/kenzok8/small-package package luci-app-adguardhome
 
 # netdata
 rm -rf feeds/luci/applications/luci-app-netdata
-git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
+merge_package main https://github.com/kenzok8/small-package package luci-app-netdata
 
 # OpenClash
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
