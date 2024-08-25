@@ -55,13 +55,19 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/luci-app-passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
 
+# diskman https://github.com/lisaac/luci-app-diskman
+mkdir -p package/luci-app-diskman && \
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O package/luci-app-diskman/Makefile
+mkdir -p package/parted && \
+wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O package/parted/Makefile
+
 # adguardhome
-git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+git clone -b 2023.10 --depth 1 https://github.com/XiaoBinin/luci-app-adguardhome package/luci-app-adguardhome
 #ln -s package/luci-app-adguardhome/po/zh-cn package/luci-app-adguardhome/po/zh_Hans
 
 # netdata
 rm -rf feeds/luci/applications/luci-app-netdata
-git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
+git clone --depth=1 https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
 #ln -s package/luci-app-netdata/po/zh-cn package/luci-app-netdata/po/zh_Hans
 
 # OpenClash
@@ -113,7 +119,10 @@ sed -i 's,Argon 主题设置,Argon 设置,g' package/luci-app-argon-config/po/zh
 cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 cp -f $GITHUB_WORKSPACE/images/favicon.ico package/luci-theme-argon/htdocs/luci-static/argon/favicon.ico
 
-find -type d -name zh-cn -path '*/luci-app-*/po/zh-cn' | xargs -i rename -v 's/zh-cn/zh_Hans/' {}
+#find -type d -name zh-cn -path '*/luci-app-*/po/zh-cn' | xargs -i rename -v 's/zh-cn/zh_Hans/' {}
+#find -type d -name zh-cn -path '*/luci-app-*/po/zh-cn' -exec bash -c 'ln -sf {} $(dirname {})/zh_Hans' \;
+#find package/// -maxdepth 1 -d -name "i18n" | xargs -i rename -v 's/i18n/po/' {}
+#find package/// -maxdepth 2 -d -name "zh-cn" | xargs -i rename -v 's/zh-cn/zh_Hans/' {}
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
