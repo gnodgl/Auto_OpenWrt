@@ -50,16 +50,21 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 #rm -rf feeds/luci/applications/luci-app-alist
 #git clone https://github.com/sbwml/luci-app-alist  package/alist
 
+# SmartDNS
+#rm -rf feeds/packages/net/smartdns
+#git clone --depth=1 https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
+#git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
+
+# adguardhome
+#git clone -b 2023.10 --depth 1 https://github.com/XiaoBinin/luci-app-adguardhome package/luci-app-adguardhome
+#ln -s package/luci-app-adguardhome/po/zh-cn package/luci-app-adguardhome/po/zh_Hans
+
 # 科学上网插件
 # git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
 # svn export https://github.com/haiibo/packages/trunk/luci-app-vssr package/luci-app-vssr
 # git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/luci-app-passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
-
-# adguardhome
-git clone -b 2023.10 --depth 1 https://github.com/XiaoBinin/luci-app-adguardhome package/luci-app-adguardhome
-#ln -s package/luci-app-adguardhome/po/zh-cn package/luci-app-adguardhome/po/zh_Hans
 
 # netdata
 rm -rf feeds/luci/applications/luci-app-netdata
@@ -75,11 +80,6 @@ rm -rf feeds/packages/net/v2ray-geodata
 rm -rf feeds/luci/applications/luci-app-mosdns
 git clone https://github.com/sbwml/luci-app-mosdns -b v5 package/mosdns
 git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
-
-# SmartDNS
-rm -rf feeds/packages/net/smartdns
-git clone --depth=1 https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
-git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
 
 # Argon主题
 rm -rf feeds/luci/themes/luci-theme-argon
