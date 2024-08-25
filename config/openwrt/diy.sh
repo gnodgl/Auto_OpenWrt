@@ -63,16 +63,12 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 # svn export https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/luci-app-passwall
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
 
-# diskman https://github.com/lisaac/luci-app-diskman
-mkdir -p package/luci-app-diskman && \
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/applications/luci-app-diskman/Makefile -O package/luci-app-diskman/Makefile
-mkdir -p package/parted && \
-wget https://raw.githubusercontent.com/lisaac/luci-app-diskman/master/Parted.Makefile -O package/parted/Makefile
+# diskman
+git clone https://github.com/lisaac/luci-app-diskman package/luci-app-diskman
 
 # netdata
 rm -rf feeds/luci/applications/luci-app-netdata
-git clone --depth=1 https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
-#ln -s package/luci-app-netdata/po/zh-cn package/luci-app-netdata/po/zh_Hans
+git clone --depth=1 https://github.com/gnodgl/luci-app-netdata package/luci-app-netdata
 
 # OpenClash
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
