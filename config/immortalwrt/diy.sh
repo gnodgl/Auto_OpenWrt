@@ -68,8 +68,7 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 
 # netdata
 rm -rf feeds/luci/applications/luci-app-netdata
-git clone --depth=1 https://github.com/sirpdboy/luci-app-netdata package/luci-app-netdata
-#ln -s package/luci-app-netdata/po/zh-cn package/luci-app-netdata/po/zh_Hans
+git clone --depth=1 https://github.com/gnodgl/luci-app-netdata package/luci-app-netdata
 
 # OpenClash
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
