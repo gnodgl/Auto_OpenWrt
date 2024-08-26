@@ -67,8 +67,8 @@ git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/l
 # svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
 
 # netdata
-rm -rf feeds/luci/applications/luci-app-netdata
-git clone --depth=1 https://github.com/gnodgl/luci-app-netdata package/luci-app-netdata
+#rm -rf feeds/luci/applications/luci-app-netdata
+#git clone --depth=1 https://github.com/gnodgl/luci-app-netdata package/luci-app-netdata
 
 # OpenClash
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
