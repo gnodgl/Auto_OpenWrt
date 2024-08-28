@@ -74,7 +74,8 @@ git clone --depth=1 https://github.com/gnodgl/luci-app-netdata package/luci-app-
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
 
 # HomeProxy
-git clone https://github.com/immortalwrt/homeproxy package/homeproxy
+git clone https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
+#git clone https://github.com/immortalwrt/homeproxy package/homeproxy
 
 # MosDNS
 rm -rf feeds/packages/net/mosdns
