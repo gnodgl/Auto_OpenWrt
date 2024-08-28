@@ -74,7 +74,7 @@ git clone --depth=1 https://github.com/gnodgl/luci-app-netdata package/luci-app-
 merge_package master https://github.com/vernesong/OpenClash package luci-app-openclash
 
 # HomeProxy
-git clone --depth 1 --branch master --single-branch --no-checkout https://github.com/muink/openwrt-chinadns-ng package/chinadns-ng
+git clone https://github.com/muink/openwrt-chinadns-ng package/chinadns-ng
 git clone https://github.com/muink/luci-app-homeproxy package/luci-app-homeproxy
 #git clone https://github.com/immortalwrt/homeproxy package/homeproxy
 
