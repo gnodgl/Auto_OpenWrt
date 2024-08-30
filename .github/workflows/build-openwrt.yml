@@ -22,7 +22,7 @@ on:
           - master
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: ${{inputs.CONFIG}}
+  REPO_BRANCH: ${{inputs.VERSION}}
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: ${{inputs.CONFIG}}
   CLASH_KERNEL: amd64
