@@ -12,10 +12,19 @@ on:
         type: choice
         options:
           - x86_64.config
+      VERSION:
+        description: '选择编译分支'
+        required: true
+        default: 'master'
+        type: choice
+        options:
+          - openwrt-23.05
+          - master
+
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: openwrt-23.05
+  REPO_BRANCH: ${{inputs.VERSION}}
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: ${{inputs.CONFIG}}
   CLASH_KERNEL: amd64
