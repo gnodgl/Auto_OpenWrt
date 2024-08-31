@@ -26,7 +26,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: ${{inputs.CONFIG}}
   CLASH_KERNEL: amd64
-  DIY_SH: diy.sh
+  DIY_SH: ${{inputs.VERSION=='master' && 'master.sh' || 'diy.sh'}}
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: false
@@ -140,7 +140,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: OpenWrt-firmware-${{inputs.CONFIG}}${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: OpenWrt-firmware-${{inputs.VERSION}}${{ env.CLASH_KERNEL }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: Generate release tag
